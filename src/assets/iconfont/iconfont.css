@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3710521 */
+  src: url('iconfont.woff2?t=1669098998138') format('woff2');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fanhui:before {
+  content: "\e601";
+}
+
+.icon-gengduo:before {
+  content: "\e602";
+}
+
+.icon-jiantou_xiangzuoliangci:before {
+  content: "\eb0b";
+}
+
+.icon-xiangyouliangci:before {
+  content: "\eb09";
+}
+
+.icon-fenxiang:before {
+  content: "\e600";
+}
+
+.icon-dengchu-box-r-xian:before {
+  content: "\e89c";
+}
+
+.icon-kulian:before {
+  content: "\e634";
+}
+
+.icon-roundcheckfill:before {
+  content: "\e656";
+}
+
+.icon-roundclosefill:before {
+  content: "\e658";
+}
+
+.icon-medium:before {
+  content: "\e87a";
+}
+
+.icon-fuzhi:before {
+  content: "\ec7a";
+}
+
+.icon-discord:before {
+  content: "\ebf8";
+}
+
+.icon-github-fill:before {
+  content: "\e885";
+}
+
+.icon-twitter-fill:before {
+  content: "\e63d";
+}
+
+.icon-bxl-telegram:before {
+  content: "\e6ea";
+}
+
