@@ -42,6 +42,7 @@ a {
     display: flex;
     .router-view {
         flex: 1;
+        background: rgb(48, 50, 55);
     }
 }
 .el-icon {

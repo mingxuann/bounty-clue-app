@@ -3,7 +3,7 @@
 import { reactive } from 'vue'
 const state = reactive({})
 const onGetNftAssets = async () => {
-    window.location.href = `https://discord.com/oauth2/authorize?response_type=code&client_id=1044566263407583242&scope=identify%20guilds.join&state=15773059ghq9183habn&redirect_uri=https://bountyclue.com/bounty-clue/discord/oauth/token/callback&prompt=consent`
+    window.location.href = `https://discord.com/oauth2/authorize?response_type=code&client_id=1044864221155954738&scope=identify%20guilds.join&state=15773059ghq9183habn&redirect_uri=https://bountyclue.com/bounty-clue/discord/oauth/token/callback&prompt=consent`
 }
 </script>
 <template>
@@ -27,8 +27,7 @@ const onGetNftAssets = async () => {
 <style lang="less" scoped>
 .profile-box {
     min-height: 100vh;
-    background-color: #333;
-    padding: 50px;
+    padding: 70px;
     box-sizing: border-box;
     .title {
         font-size: 50px;

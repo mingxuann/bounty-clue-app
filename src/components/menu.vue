@@ -37,7 +37,11 @@ const routerPush = (item) => {
 </script>
 <template>
     <div class="menu-box">
-        <div class="menu-item" v-for="item in menuList" @click="routerPush(item)">
+        <div
+            class="menu-item"
+            :class="{ 'menu-item-active': route.path == item.path }"
+            v-for="item in menuList"
+            @click="routerPush(item)">
             {{ item.name }}
         </div>
     </div>
@@ -45,18 +49,23 @@ const routerPush = (item) => {
 <style lang="less" scoped>
 .menu-box {
     width: 300px;
-    background-color: #333;
+    background-color: rgb(42, 42, 47);
     display: flex;
     flex-direction: column;
-    border-right: 1px solid #fff;
+    border-right: 1px solid #999;
+    padding-top: 70px;
+    box-sizing: border-box;
     .menu-item {
-        height: 80px;
-        line-height: 80px;
-        text-align: center;
+        height: 100px;
+        line-height: 100px;
         font-size: 30px;
         font-weight: 400;
         color: #fafdfa;
         cursor: pointer;
+        padding-left: 70px;
+    }
+    .menu-item-active {
+        background-color: #999;
     }
 }
 </style>

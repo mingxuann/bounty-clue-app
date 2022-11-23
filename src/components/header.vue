@@ -15,24 +15,6 @@ const state = reactive({
 })
 const assets = computed(() => store.state.persistence.assets)
 const assetsShow = computed(() => store.state.persistence.assetsShow)
-const menuList = [
-    {
-        name: 'Promotion',
-        path: '/promotion',
-    },
-    {
-        name: 'Incubator',
-        path: '/incubator',
-    },
-    {
-        name: 'Stake',
-        path: '/stake',
-    },
-    {
-        name: 'Claim',
-        path: '/claim',
-    },
-]
 const routerPush = (item) => {
     state.menuListItem = item.path
     router.push(item.path)
@@ -60,19 +42,13 @@ const onConnectClick = async () => {
     <header class="header-box">
         <div class="header-box-content">
             <div class="logo-img-box" @click="onLogoClick">
-                <img class="logo-img" src="@/assets/image/common/logo.png" alt="" />
+                <img class="logo-img" src="@/assets/image/logo.png" alt="" />
                 <div class="logo">BOUNYCLUE</div>
             </div>
-            <div class="tab-list">
-                <div
-                    class="tab-item"
-                    v-for="item in menuList"
-                    :class="{ active: item.path == route.path }"
-                    @click="routerPush(item)">
-                    {{ item.name }}
-                </div>
-            </div>
             <div class="login-button-box">
+                <div class="docs">Community</div>
+                <div class="docs">Docs</div>
+                <div class="login-button" v-if="!assets" @click="onConnectClick">Ethereum</div>
                 <div class="login-button" v-if="!assets" @click="onConnectClick">
                     Connect Wallet
                 </div>
@@ -107,8 +83,8 @@ const onConnectClick = async () => {
     top: 0;
     left: 0;
     z-index: 2;
-    border-bottom: 1px solid #fff;
-    background: #333;
+    border-bottom: 1px solid #999;
+    background-color: rgb(42, 42, 47);
     .header-box-content {
         width: 1700px;
         height: 100%;
@@ -126,42 +102,36 @@ const onConnectClick = async () => {
             .logo {
                 font-size: 30px;
                 font-weight: 400;
-                color: #010101;
+                color: #fff;
                 font-weight: 600;
                 position: relative;
                 top: 3px;
             }
         }
-
-        .tab-list {
-            display: flex;
-            margin-left: 60px;
-            .tab-item {
-                margin-left: 44px;
-                cursor: pointer;
-                font-size: 24px;
-                font-family: MicrosoftYaHeiUI;
-                color: #010101;
-            }
-            .active {
-                color: #43378d;
-            }
-        }
         .login-button-box {
             margin-left: auto;
             position: relative;
+            display: flex;
+            align-items: center;
+            .docs {
+                font-size: 23px;
+                font-weight: 400;
+                color: #f7f9f7;
+                margin-right: 38px;
+            }
             .login-button {
                 width: 209px;
-                height: 54px;
+                height: 50px;
                 background: #f7f6f6;
                 border: 1px solid #37388e;
                 border-radius: 40px;
                 font-size: 22px;
-                font-weight: 400;
+                font-weight: 600;
                 color: #010101;
-                line-height: 54px;
+                line-height: 50px;
                 text-align: center;
                 cursor: pointer;
+                margin-left: 18px;
             }
             .wallet-details {
                 width: 420px;
