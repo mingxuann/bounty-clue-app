@@ -15,6 +15,11 @@ let routes = [
         component: () => import('@/views/claim.vue'),
     },
     {
+        path: '/get-clue',
+        name: 'get-clue',
+        component: () => import('@/views/get-clue.vue'),
+    },
+    {
         path: '/profile',
         name: 'profile',
         component: () => import('@/views/profile.vue'),

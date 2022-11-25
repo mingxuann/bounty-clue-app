@@ -21,7 +21,8 @@ service.interceptors.request.use(
 //响应拦截器
 service.interceptors.response.use(
     async (response) => {
-        if (response.data.code !== 200) {
+        let stateLogoutList = [1001, 1002, 1003, 1004, 1005]
+        if (stateLogoutList.indexOf(response.data.code) !== -1) {
             store.commit('stateLogout')
             ElMessage({
                 dangerouslyUseHTMLString: true,

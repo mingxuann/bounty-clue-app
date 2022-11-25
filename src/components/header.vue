@@ -53,21 +53,6 @@ const onConnectClick = async () => {
                     Connect Wallet
                 </div>
                 <div class="login-button" v-else>{{ assetsShow }}</div>
-                <div class="wallet-details" v-if="state.walletPopup">
-                    <div class="wallet-details-matemake matemake-show">
-                        <img class="mate-logo" src="@/assets/image/common/meta-mask.png" alt="" />
-                        <span class="metamask-text">MetaMask</span>
-                        <i class="iconfont icon-roundcheckfill"></i>
-                    </div>
-                    <div class="wallet-details-matemake log-out">
-                        <i class="iconfont icon-dengchu-box-r-xian"></i>
-                        <span class="metamask-text">Discord</span>
-                    </div>
-                    <div class="wallet-details-matemake log-out" @click="logOut">
-                        <i class="iconfont icon-dengchu-box-r-xian"></i>
-                        <span class="metamask-text">Log out</span>
-                    </div>
-                </div>
             </div>
         </div>
     </header>

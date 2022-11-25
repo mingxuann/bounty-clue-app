@@ -1,34 +1,42 @@
 /** * @file * @author 何明暄 */
 <script setup>
 import { reactive } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
+const route = useRoute()
 const state = reactive({})
+const pushGetClue = () => {
+    router.push('/get-clue')
+}
 </script>
 <template>
-    <div class="claim-box">
-        <p class="title">Claim</p>
-        <div class="equity-income">
-            <div class="equity-income-left">
-                <div class="income">
-                    <p class="title">Equity Income</p>
-                    <p class="detile-qwn">Owned Equity : $Value$ USDT</p>
-                    <p class="detile-qwn">Next Claim Amount : $Value$ USDT</p>
-                    <p class="detile-qwn">Next Claim Time : $DateTime$</p>
-                    <div class="claim">Claim</div>
+    <div>
+        <div class="claim-box">
+            <p class="title">Claim</p>
+            <div class="equity-income">
+                <div class="equity-income-left">
+                    <div class="income">
+                        <p class="title">Equity Income</p>
+                        <p class="detile-qwn">Owned Equity : $Value$ USDT</p>
+                        <p class="detile-qwn">Next Claim Amount : $Value$ USDT</p>
+                        <p class="detile-qwn">Next Claim Time : $DateTime$</p>
+                        <div class="claim">Claim</div>
+                    </div>
+                    <div class="income">
+                        <p class="title">Bounty Income</p>
+                        <p class="detile-qwn">Token Name : $Value$</p>
+                        <p class="detile-qwn">Token Amount : $Value$</p>
+                        <p class="detile-qwn">Contract Address : $Value$</p>
+                        <div class="claim">Claim</div>
+                    </div>
                 </div>
-                <div class="income">
-                    <p class="title">Bounty Income</p>
-                    <p class="detile-qwn">Token Name : $Value$</p>
-                    <p class="detile-qwn">Token Amount : $Value$</p>
-                    <p class="detile-qwn">Contract Address : $Value$</p>
-                    <div class="claim">Claim</div>
-                </div>
-            </div>
-            <div class="equity-income-right">
-                <div class="claim-rules">
-                    <p class="title">Claim Rules</p>
-                    <p class="detile-qwn">1.How to Claim Equity income?</p>
-                    <p class="detile-qwn">2.How to Claim Bounty income?</p>
-                    <div class="claim">Buy $CLUE</div>
+                <div class="equity-income-right">
+                    <div class="claim-rules">
+                        <p class="title">Claim Rules</p>
+                        <p class="detile-qwn">1.How to Claim Equity income?</p>
+                        <p class="detile-qwn">2.How to Claim Bounty income?</p>
+                        <div class="claim" @click="pushGetClue">Buy $CLUE</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,18 +44,25 @@ const state = reactive({})
 </template>
 <style lang="less" scoped>
 .claim-box {
-    min-height: 100vh;
-    padding: 70px;
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
     box-sizing: border-box;
+    max-width: 1400px;
+    min-height: 90vh;
+    margin: auto;
+    padding-bottom: 100px;
     .title {
         font-size: 50px;
         font-weight: 400;
         color: #fafdfa;
     }
     .equity-income {
+        margin: auto;
         margin-top: 80px;
         display: flex;
         justify-content: space-between;
+        max-width: 1400px;
         .equity-income-left {
             display: flex;
             flex-direction: column;
@@ -86,6 +101,7 @@ const state = reactive({})
                     bottom: 20px;
                     left: 50%;
                     transform: translateX(-50%);
+                    cursor: pointer;
                 }
             }
         }
@@ -125,6 +141,7 @@ const state = reactive({})
                     bottom: 20px;
                     left: 50%;
                     transform: translateX(-50%);
+                    cursor: pointer;
                 }
             }
         }
