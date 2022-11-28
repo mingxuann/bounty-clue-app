@@ -13,14 +13,17 @@ const menuList = [
     {
         name: 'Incubator',
         path: '/incubator',
+        comingSoon: true,
     },
     {
         name: 'Governance',
         path: '/governance',
+        comingSoon: true,
     },
     {
         name: 'Farm',
         path: '/farm',
+        comingSoon: true,
     },
     {
         name: 'Claim',
@@ -42,6 +45,7 @@ const routerPush = (item) => {
             :class="{ 'menu-item-active': route.path == item.path }"
             v-for="item in menuList"
             @click="routerPush(item)">
+            <div class="comming-soon-tag" v-if="item.comingSoon">Coming Soon</div>
             {{ item.name }}
         </div>
     </div>
@@ -63,6 +67,17 @@ const routerPush = (item) => {
         color: #fafdfa;
         cursor: pointer;
         padding-left: 70px;
+        position: relative;
+        .comming-soon-tag {
+            font-size: 12px;
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            background-color: #c2c4ff;
+            border-radius: 12px;
+            padding: 2px 5px;
+            line-height: 20px;
+        }
     }
     .menu-item-active {
         background-color: #999;

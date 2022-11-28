@@ -35,7 +35,7 @@ export const metaMaskVerification = async () => {
             signature,
         }
     } catch (error) {
-        console.log(error)
+        return false
     }
 }
 

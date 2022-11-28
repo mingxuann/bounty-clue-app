@@ -15,6 +15,21 @@ let routes = [
         component: () => import('@/views/claim.vue'),
     },
     {
+        path: '/incubator',
+        name: 'incubator',
+        component: () => import('@/views/coming-soon.vue'),
+    },
+    {
+        path: '/governance',
+        name: 'governance',
+        component: () => import('@/views/coming-soon.vue'),
+    },
+    {
+        path: '/farm',
+        name: 'farm',
+        component: () => import('@/views/coming-soon.vue'),
+    },
+    {
         path: '/get-clue',
         name: 'get-clue',
         component: () => import('@/views/get-clue.vue'),

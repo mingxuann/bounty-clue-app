@@ -27,7 +27,7 @@ export function monitorSize() {
         setScrollbarWidth()
         setSize()
     })
-    // 屏幕变化执行
+    // 屏幕变化监听
     window.addEventListener('resize', function () {
         setScrollbarWidth()
         setSize()

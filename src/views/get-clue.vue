@@ -1,7 +1,21 @@
 /** * @file * @author 何明暄 */
 <script setup>
-import { reactive } from 'vue'
-const state = reactive({})
+import { reactive, computed } from 'vue'
+import { approve, onBuyClueForInvestor } from '@/contract/bountyclue-contranct.js'
+const state = reactive({
+    usdtNumber: '',
+    clueNumber: '',
+})
+const usdtInput = () => {
+    state.clueNumber = Math.floor((state.usdtNumber / 0.005) * 100) / 100
+}
+const clueInput = () => {
+    state.usdtNumber = Math.floor(state.clueNumber * 0.005 * 100) / 100
+}
+const onBuyNow = async () => {
+    await approve()
+    // await onBuyClueForInvestor()
+}
 </script>
 <template>
     <div>
@@ -54,14 +68,22 @@ const state = reactive({})
                     </div>
                 </div>
                 <div class="usdt-input">
-                    <input class="usdt-input-item" type="text" />
+                    <input
+                        class="usdt-input-item"
+                        type="text"
+                        v-model="state.usdtNumber"
+                        @input="usdtInput" />
                     <div class="usdt-text">
                         <i class="iconfont icon-usdt"></i>
                         <span>USDT</span>
                     </div>
                 </div>
                 <div class="usdt-input inputb">
-                    <input class="usdt-input-item" type="text" />
+                    <input
+                        class="usdt-input-item"
+                        type="number"
+                        v-model="state.clueNumber"
+                        @input="clueInput" />
                     <div class="usdt-text">
                         <div class="iconfont-box">
                             <i class="iconfont icon-clue"></i>
@@ -69,7 +91,7 @@ const state = reactive({})
                         <span>CLUE</span>
                     </div>
                 </div>
-                <div class="buy-now">Buy Now</div>
+                <div class="buy-now" @click="onBuyNow">Buy Now</div>
             </div>
         </div>
     </div>
@@ -140,6 +162,7 @@ const state = reactive({})
                 font-size: 28px;
                 padding: 0 30px;
                 box-sizing: border-box;
+                outline: none;
             }
             .usdt-text {
                 display: flex;
@@ -189,7 +212,17 @@ const state = reactive({})
             color: #000000;
             text-align: center;
             line-height: 62px;
+            cursor: pointer;
         }
     }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    appearance: none;
+    -webkit-appearance: none;
+}
+input[type='number'] {
+    appearance: textfield;
+    -moz-appearance: textfield;
 }
 </style>

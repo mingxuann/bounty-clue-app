@@ -16,3 +16,10 @@ export const userDoLong = (data) => {
         data,
     })
 }
+// Twitter授权第一步
+export const twitterOauthRequestToken = () => {
+    return service({
+        url: `/bounty-clue/twitter/oauth/requestToken`,
+        method: 'get',
+    })
+}
