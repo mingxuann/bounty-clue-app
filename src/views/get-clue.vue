@@ -2,6 +2,7 @@
 <script setup>
 import { reactive, computed } from 'vue'
 import { approve, onBuyClueForInvestor } from '@/contract/bountyclue-contranct.js'
+import { ElMessage } from 'element-plus'
 const state = reactive({
     usdtNumber: '',
     clueNumber: '',
@@ -13,8 +14,13 @@ const clueInput = () => {
     state.usdtNumber = Math.floor(state.clueNumber * 0.005 * 100) / 100
 }
 const onBuyNow = async () => {
-    await approve()
-    // await onBuyClueForInvestor()
+    if (state.usdtNumber === '') {
+        ElMessage.error('Value cannot be empty')
+        return
+    }
+    const approveRes = await approve(state.usdtNumber)
+    if (!approveRes) return
+    await onBuyClueForInvestor(state.usdtNumber)
 }
 </script>
 <template>
@@ -27,7 +33,7 @@ const onBuyNow = async () => {
                         <span class="positionb">
                             <span class="positiona">Token Name</span>
                             :
-                            <span class="positionc">$ CLUE</span>
+                            <span class="positionc">$CLUE</span>
                         </span>
                     </div>
                 </div>
@@ -70,7 +76,7 @@ const onBuyNow = async () => {
                 <div class="usdt-input">
                     <input
                         class="usdt-input-item"
-                        type="text"
+                        type="number"
                         v-model="state.usdtNumber"
                         @input="usdtInput" />
                     <div class="usdt-text">

@@ -1,3 +1,4 @@
+import store from '@/store/index'
 import Web3 from 'web3'
 // import { ElMessage } from 'element-plus'
 
@@ -9,6 +10,7 @@ export const web3Init = () => {
     } else {
         web3 = new Web3(new Web3.providers.HttpProvider('https://polygon-rpc.com'))
     }
+    console.log('web3 init', window.web3)
     window.web3 = web3 // web3链接
 }
 export const switchChain = async () => {
@@ -44,9 +46,10 @@ export const establishAConnection = async () => {
     switchChain()
     try {
         let address = await ethereum.request({ method: 'eth_requestAccounts' }) //授权连接钱包
+        store.commit('setAssets', address[0]) // 存入钱包
         return address[0]
     } catch (error) {
-        console.log(error)
+        return false
     }
 }
 

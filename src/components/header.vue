@@ -32,7 +32,6 @@ const onLogoClick = () => {
 const onConnectClick = async () => {
     // window.open('app.bountyclue.com', '_blank')
     const userDoLongParameter = await metaMaskVerification()
-    store.commit('setAssets', userDoLongParameter.address) // 存入钱包
     const res = await userDoLong(userDoLongParameter)
     store.commit('stateWalletToken', res.data.result.token) // 存入Token
 }

@@ -2,35 +2,50 @@ import store from '@/store/index'
 import router from '@/router/index'
 import { ElMessage } from 'element-plus'
 import { getQueryString } from '@/utils/common.js'
-import { metaMaskVerification } from '@/utils/web3.js'
+import { establishAConnection } from '@/utils/web3.js'
+// export function approve(authorizedAmount) {
+//     // 授权 usdt
+//     return new Promise((resolve, reject) => {
+//         const bountyContract = store.state.bountyContract // 获取bountyContract合约
+//         const usdtContract = store.state.usdtContract // 获取USDT合约
+//         const amount = authorizedAmount * 1000000
+//         console.log(amount, 'svamountamount')
+//         let optionsData = usdtContract.methods
+//             .approve(bountyContract.options.address, amount)
+//             .encodeABI() // 调用链上的方法
+//         callContractMethod(optionsData, usdtContract, 0, (res) => {
+//             res ? ElMessage.success('USDT Approve Success') : ElMessage.error('USDT Approve Error')
+//             resolve(res)
+//         })
+//     })
+// }
 
-export function approve() {
+export function approve(authorizedAmount) {
     // 授权 usdt
     return new Promise((resolve, reject) => {
         const bountyContract = store.state.bountyContract // 获取bountyContract合约
         const usdtContract = store.state.usdtContract // 获取USDT合约
-        // const amount = window.web3.utils.toWei((100).toString(), 'ether')
-        console.log(bountyContract.options.address, 'bountyContract.options.address')
+        const amount = authorizedAmount * 1000000
         let optionsData = usdtContract.methods
-            .approve(bountyContract.options.address, 100)
+            .approve(bountyContract.options.address, amount)
             .encodeABI() // 调用链上的方法
         callContractMethod(optionsData, usdtContract, 0, (res) => {
-            res ? ElMessage.success('NFT Approve Success') : ElMessage.error('NFT Approve Error')
+            res ? ElMessage.success('USDT Approve Success') : ElMessage.error('USDT Approve Error')
             resolve(res)
         })
     })
 }
-export function onBuyClueForInvestor() {
+export function onBuyClueForInvestor(authorizedAmount) {
     // bountyContract 购买
     return new Promise(async (resolve, reject) => {
         const bountyContract = store.state.bountyContract // 获取bountyContract合约
-        const amount = window.web3.utils.toWei((100).toString(), 'ether')
+        const amount = authorizedAmount * 1000000
         let optionsData = bountyContract.methods.buyClueForInvestor(amount).encodeABI()
         callContractMethod(optionsData, bountyContract, 0, (res) => {
             if (res) {
-                ElMessage.success('NFT Redeem Success')
+                ElMessage.success('Purchase succeeded')
             } else {
-                ElMessage.error('NFT Redeem Error')
+                ElMessage.error('Purchase Error')
             }
             resolve(res)
         })
@@ -44,12 +59,11 @@ async function callContractMethod(optionsData, contractExample, values = 0, call
      * @param values value值默认是0
      * @param callback 回调函数
      */
-    // if (!(await metaMaskVerification())) return
+    console.log(5, optionsData)
+    if (!(await establishAConnection())) return
     const account = store.state.persistence.assets // 当前钱包地址
-    // if (!account) {
-    //     return
-    // }
     const gasPrice = await window.web3.eth.getGasPrice() // 获取gas费
+    console.log(6, optionsData)
     let options = {
         from: account,
         to: contractExample.options.address,

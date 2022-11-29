@@ -24,7 +24,6 @@ const store = createStore({
     },
     actions: {
         initContract(context) {
-            console.log(window.web3, 'window.web3window.web3window.web3')
             // 调起合约实例化方法
             const texasPokerContract = new window.web3.eth.Contract(
                 bounty,
