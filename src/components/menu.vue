@@ -57,12 +57,12 @@ const routerPush = (item) => {
     display: flex;
     flex-direction: column;
     border-right: 1px solid #999;
-    padding-top: 70px;
+    padding-top: 50px;
     box-sizing: border-box;
     .menu-item {
-        height: 100px;
-        line-height: 100px;
-        font-size: 30px;
+        height: 80px;
+        line-height: 80px;
+        font-size: 25px;
         font-weight: 400;
         color: #fafdfa;
         cursor: pointer;

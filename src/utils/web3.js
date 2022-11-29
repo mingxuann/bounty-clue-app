@@ -23,9 +23,14 @@ export const switchChain = async () => {
 }
 export const metaMaskVerification = async () => {
     // 请求钱包签名
-    const message = 'Hello, you need to sign with your wallet to log in to META BONUS platform.'
     let signature
     let address = await establishAConnection()
+    console.log(store.state.walletToken)
+    if (store.state.walletToken) return
+    var encode = encodeURI(address + new Date().getTime())
+    // 对编码的字符串转化base64
+    var base64 = btoa(encode)
+    const message = `Welcome to the BOUNTYCLUE Questboard, please sign this message to verify your identity. Your custom message is: ${base64}`
     try {
         signature = await window.ethereum.request({
             method: 'personal_sign',
