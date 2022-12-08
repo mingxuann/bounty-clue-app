@@ -2,7 +2,12 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 let routes = [
     {
         path: '/',
-        redirect: '/promotion',
+        redirect: '/home',
+    },
+    {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/home.vue'),
     },
     {
         path: '/promotion',

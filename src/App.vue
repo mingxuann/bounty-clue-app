@@ -15,7 +15,7 @@ store.dispatch('initUsdtContract') // *初始化挂在合约
 <template>
     <div class="app">
         <Header />
-        <router-view class="router-view"></router-view>
+        <router-view></router-view>
         <Footer />
     </div>
 </template>
