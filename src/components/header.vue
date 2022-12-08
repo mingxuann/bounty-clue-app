@@ -1,16 +1,16 @@
 <script setup>
-import { reactive, computed } from 'vue'
+import { reactive, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { metaMaskVerification } from '@/utils/web3.js'
 import { userDoLong } from '@/api/index.js'
+import jazzicon from 'jazzicon'
 
 const router = useRouter()
 const route = useRoute()
 const store = useStore()
 const state = reactive({
     menuListItem: '/home',
-    headerAnmition: true,
     walletPopup: false,
 })
 const assets = computed(() => store.state.persistence.assets)
@@ -22,18 +22,23 @@ const routerPush = (item) => {
 const onLogoClick = () => {
     router.push('/home')
 }
-// window.addEventListener('scroll', function () {
-//     if (document.documentElement.scrollTop > 170) {
-//         state.headerAnmition = true
-//     } else {
-//         state.headerAnmition = false
-//     }
-// })
+
+onMounted(() => {
+    // var body = document.querySelector('#loginImg')
+    // var el = jazzicon(20, 52906)
+    // body.appendChild(el)
+})
 const onConnectClick = async () => {
     const userDoLongParameter = await metaMaskVerification()
     const res = await userDoLong(userDoLongParameter)
     store.commit('stateWalletToken', res.data.result.token) // 存入Token
 }
+const onStateLogout = async () => {
+    store.commit('stateLogout')
+}
+document.addEventListener('click', (e) => {
+    if (state.walletPopup == true) state.walletPopup = false
+})
 </script>
 
 <template>
@@ -46,11 +51,17 @@ const onConnectClick = async () => {
             <div class="login-button-box">
                 <div class="docs">Community</div>
                 <div class="docs">Docs</div>
-                <div class="login-button" v-if="!assets" @click="onConnectClick">Ethereum</div>
+                <div class="login-button">Ethereum</div>
                 <div class="login-button" v-if="!assets" @click="onConnectClick">
                     Connect Wallet
                 </div>
-                <div class="login-button" v-else>{{ assetsShow }}</div>
+                <div class="login-button" v-else @click.stop="state.walletPopup = true">
+                    <!-- <div id="loginImg"></div> -->
+                    <span>{{ assetsShow }}</span>
+                    <div class="login-show-box" v-if="state.walletPopup">
+                        <div class="login-show-item" @click="onStateLogout">Login Out</div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -115,6 +126,35 @@ const onConnectClick = async () => {
                 text-align: center;
                 cursor: pointer;
                 margin-left: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                #loginImg {
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 12px;
+                }
+                .login-show-box {
+                    position: absolute;
+                    right: 0px;
+                    border-radius: 12px;
+                    width: 320px;
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 16px;
+                    top: 60px;
+                    background-color: rgb(255, 255, 255);
+                    border: 1px solid rgb(210, 217, 238);
+                    box-shadow: rgb(51 53 72 / 4%) 8px 12px 20px, rgb(51 53 72 / 2%) 4px 6px 12px,
+                        rgb(51 53 72 / 4%) 4px 4px 8px;
+                    padding: 16px 0px;
+                    .login-show-item {
+                        height: 60px;
+                        line-height: 60px;
+                        text-align: center;
+                    }
+                }
             }
             .wallet-details {
                 width: 420px;

@@ -3,7 +3,6 @@
 import { reactive } from 'vue'
 import { useStore } from 'vuex'
 import Header from '@/components/header.vue'
-import Menu from '@/components/menu.vue'
 import Footer from '@/components/footer.vue'
 import { monitorSize, setScrollbarWidth } from '@/utils/utils.js'
 const store = useStore()
@@ -16,10 +15,7 @@ store.dispatch('initUsdtContract') // *初始化挂在合约
 <template>
     <div class="app">
         <Header />
-        <div class="menu-box">
-            <Menu />
-            <router-view class="router-view"></router-view>
-        </div>
+        <router-view class="router-view"></router-view>
         <Footer />
     </div>
 </template>
@@ -41,16 +37,5 @@ a {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-.menu-box {
-    display: flex;
-    .router-view {
-        flex: 1;
-        background: rgb(48, 50, 55);
-    }
-}
-.el-icon {
-    width: 40px !important;
-    height: 40px !important;
 }
 </style>

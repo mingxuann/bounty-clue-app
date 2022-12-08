@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import px2rem from 'postcss-pxtorem'
 const { resolve } = require('path')
 export default defineConfig({
     resolve: {
@@ -19,17 +18,6 @@ export default defineConfig({
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/bounty-clue/, 'bounty-clue'),
             },
-        },
-    },
-    css: {
-        postcss: {
-            plugins: [
-                px2rem({
-                    rootValue: 96, // 1rem的大小
-                    propList: ['*'], // 需要转换的属性，这里选择全部都进行转换
-                    unitPrecision: 10,
-                }),
-            ],
         },
     },
 })

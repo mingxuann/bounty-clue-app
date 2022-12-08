@@ -25,8 +25,7 @@ export const metaMaskVerification = async () => {
     // 请求钱包签名
     let signature
     let address = await establishAConnection()
-    console.log(store.state.walletToken)
-    if (store.state.walletToken) return
+    if (store.state.persistence.walletToken) return
     var encode = encodeURI(address + new Date().getTime())
     // 对编码的字符串转化base64
     var base64 = btoa(encode)
