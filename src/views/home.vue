@@ -14,6 +14,7 @@ const changeState = () => {
     const blobList = document.querySelectorAll('.blob')
     create(blobList[random(0, blobList.length)])
 }
+
 let offset = 25
 const create = (blob) => {
     let r = []
