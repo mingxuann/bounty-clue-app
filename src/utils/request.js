@@ -8,7 +8,7 @@ let service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
     (config) => {
-        config.headers['AuthAuthorize'] = store.state.persistence.walletToken || ''
+        config.headers['AuthAuthorize'] = store.state.persistence.userToken || ''
         // config.url = import.meta.env.DEV
         //     ? import.meta.env.VITE_REQUEST_URL + config.url
         //     : import.meta.env.VITE_REQUEST_URL + config.url

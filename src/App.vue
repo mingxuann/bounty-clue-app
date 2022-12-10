@@ -4,11 +4,8 @@ import { reactive } from 'vue'
 import { useStore } from 'vuex'
 import Header from '@/components/header.vue'
 import Footer from '@/components/footer.vue'
-import { monitorSize, setScrollbarWidth } from '@/utils/utils.js'
 const store = useStore()
 const state = reactive({})
-monitorSize() // 屏幕变化监听
-setScrollbarWidth()
 store.dispatch('initContract') // *初始化挂在合约
 store.dispatch('initUsdtContract') // *初始化挂在合约
 </script>

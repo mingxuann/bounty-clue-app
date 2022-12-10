@@ -6,12 +6,16 @@ import usdt from '@/assets/abi/usdt.json'
 const store = createStore({
     state() {
         return {
+            balanceNumber: 0,
             discordCode: false,
             bountyContract: {},
             usdtContract: {},
         }
     },
     mutations: {
+        setBalanceNumber(state, data) {
+            state.balanceNumber = (data / 1000000000000000000).toFixed(4)
+        },
         setCode(state, data) {
             state.discordCode = data
         },
