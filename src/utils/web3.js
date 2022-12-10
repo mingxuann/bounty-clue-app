@@ -32,15 +32,15 @@ export const switchChain = async (chain) => {
 }
 export const checkBalance = async () => {
     // 请求余额
-    let address = await establishAConnection()
-    var balance = await window.web3.eth.getBalance(address)
+    if (!store.state.persistence.assets) return
+    var balance = await window.web3.eth.getBalance(store.state.persistence.assets)
     store.commit('setBalanceNumber', balance)
     return balance
 }
 export const metaMaskVerification = async () => {
     // 请求钱包签名
     let signature
-    let address = await establishAConnection()
+    let address = store.state.persistence.assets
     if (!address) return false
     if (store.state.persistence.walletToken) return
     var encode = encodeURI(address + new Date().getTime())

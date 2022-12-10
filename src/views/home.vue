@@ -170,7 +170,7 @@ const create = (blob) => {
                         :modules="modules"
                         :autoplay="{
                             disableOnInteraction: false,
-                            delay: 2000,
+                            delay: 5000,
                         }"
                         :loop="true"
                         :slidesPerView="2"
