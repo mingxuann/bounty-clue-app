@@ -1,6 +1,12 @@
 /** * @file * @author 何明暄 */
 <script setup>
 import { reactive, onMounted } from 'vue'
+
+import { Autoplay } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
+const modules = [Autoplay]
+
 const state = reactive({})
 onMounted(() => {
     changeState()
@@ -101,8 +107,38 @@ const create = (blob) => {
                     </div>
                 </div>
                 <div class="infomer">
-                    <div>Bounty For Infomer</div>
-                    <div>Clue For Project</div>
+                    <div>
+                        <p>Bounty For Infomer</p>
+                        <div class="infomer-1">
+                            <img src="@/assets/image/home/infomer-1.png" />
+                            <span
+                                >Closely cooperate with Web3 project parties to provide task rewards
+                                for real crypto users (known as infomers), and earn special
+                                qualifications to participate in discount promotion or group
+                                purchase of crypto assets.</span
+                            >
+                        </div>
+                        <button class="button-border earn-ounty">
+                            <span>Earn Bounty</span>
+                            <i class="iconfont icon-fenxiang"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <p>Clue For Web3 Project</p>
+                        <div class="infomer-1">
+                            <img src="@/assets/image/home/infomer-2.png" />
+                            <span
+                                >Provide reliable Web3 project clues for the community to
+                                participate in ecological construction, and obtain real crypto
+                                investors by launching reward tasks, so as to keep them alive for a
+                                long time.</span
+                            >
+                        </div>
+                        <button class="button-border earn-ounty">
+                            <span>Provide Clue</span>
+                            <i class="iconfont icon-fenxiang"></i>
+                        </button>
+                    </div>
 
                     <button class="button-border know-more">
                         <span>Know More About BountyClue</span>
@@ -121,9 +157,8 @@ const create = (blob) => {
                         </div>
                     </div>
                 </div>
-
                 <div class="view-all">
-                    <div>
+                    <div class="illuimg-box">
                         <img class="illuimg" src="@/assets/image/home/illuimg.png" />
 
                         <button class="button-border view-all-but">
@@ -131,13 +166,46 @@ const create = (blob) => {
                             <i class="iconfont icon-fenxiang"></i>
                         </button>
                     </div>
-                    <div class="blank-block"></div>
-                    <div class="blank-block"></div>
+                    <Swiper
+                        :modules="modules"
+                        :autoplay="{
+                            disableOnInteraction: false,
+                            delay: 2000,
+                        }"
+                        :loop="true"
+                        :slidesPerView="2"
+                        :spaceBetween="30">
+                        <SwiperSlide v-for="(item, index) in [1, 2, 3, 4]" :key="index">
+                            <div class="blank-block">
+                                <h2 class="head-portrait"></h2>
+                                <div class="character-name">
+                                    <p>Alium{{ index }}</p>
+                                    <span>Transaction bounty</span>
+                                </div>
+                                <div class="character-content">
+                                    <p class="task">Task :</p>
+                                    <p class="character-text">
+                                        Complete 3 times of SALM transactions on UniSwap, and each
+                                        transaction is greater then 500USDT.
+                                    </p>
+                                    <p class="character-btn">
+                                        <span>Bounty : 1000 SALM</span>
+
+                                        <button>Implement</button>
+                                    </p>
+                                    <p class="character-time">
+                                        <span>Ending Time -</span>
+                                        <span>4 days 16 : 33 : 43</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
                 <div class="bounty-about">
                     <div class="bounty-about-text">
                         <button class="about promotion">
-                            <img class="abouttop" src="@/assets/image/home/Promotiontop.png" />New
+                            <img class="abouttop" src="@/assets/image/home/promotion-top.png" />Live
                         </button>
                         <div>
                             <p>Promotion</p>
@@ -147,23 +215,81 @@ const create = (blob) => {
                 </div>
                 <div class="discount-channel">
                     <div class="discount-content-a">
-                        <div class="block-a"></div>
+                        <div class="block-a">
+                            <div class="head-portrait"></div>
+                            <div>BountyClue</div>
+                            <div class="tags">
+                                <span>Defi</span>
+                                <span>Tools</span>
+                                <span>Gaming</span>
+                                <span>Farm</span>
+                            </div>
+                            <div class="discount-channel-text">
+                                Multi-chain crypto asset group purchase solution platform
+                            </div>
+                            <div>Up to 25% off for $CLUE</div>
+                            <div class="discount-channel-clue">
+                                <div>
+                                    <p>Amount:</p>
+                                    <p>Balance:</p>
+                                    <p>Participated:</p>
+                                </div>
+                                <div>
+                                    <p>10.000.000</p>
+                                    <p>3,000,000</p>
+                                    <p>1920</p>
+                                </div>
+                            </div>
+                            <p class="discount-channel-time">
+                                <span>Ending Time -</span>
+                                <span>4 days 16 : 33 : 43</span>
+                            </p>
+                        </div>
                         <p>
                             Multi-chain
                             <br />
                             <span>Discount Channel</span>
                         </p>
                     </div>
-                    <div>
-                        <div class="block-b"></div>
-                        <div class="block-c"></div>
-                    </div>
-                    <div>
-                        <button class="button-border explore-more">
-                            <span>Explore More</span>
-                            <i class="iconfont icon-fenxiang"></i>
-                        </button>
-                        <div class="block-d"></div>
+                    <div class="block-box">
+                        <div class="block-b">
+                            <span>Upcoming</span>
+                            <div></div>
+                            <p class="discount-footer">
+                                <button>Apply</button>
+                                <span>COSTO.LAND</span>
+                            </p>
+                        </div>
+                        <div class="block-b">
+                            <span>Upcoming</span>
+                            <div></div>
+                            <p class="discount-footer">
+                                <button>Apply</button>
+                                <span>SPACE CHAIN</span>
+                            </p>
+                        </div>
+                        <div class="block-b">
+                            <span class="orange">Voting</span>
+                            <div></div>
+                            <p class="discount-footer">
+                                <button>Apply</button>
+                                <span>COSTO.LAND</span>
+                            </p>
+                        </div>
+                        <div class="block-b">
+                            <span class="orange">Voting</span>
+                            <div></div>
+                            <p class="discount-footer">
+                                <button>Apply</button>
+                                <span>SPACE CHAIN</span>
+                            </p>
+                        </div>
+                        <div class="explore-more">
+                            <button class="button-border">
+                                <span>Explore More</span>
+                                <i class="iconfont icon-fenxiang"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="bounty-about">
@@ -241,12 +367,12 @@ const create = (blob) => {
                         <p>Congratulations claim your bounty</p>
                         <button>Claim</button>
                     </div>
-                    <img class="aero-bee" src="@/assets/image/home/01.png" />
+                    <img class="aero-bee" src="@/assets/image/home/rocket-1.png" />
                 </div>
                 <div class="bounty-about">
                     <div class="bounty-about-text">
                         <button class="about Clue">
-                            <img class="abouttop" src="@/assets/image/home/Promotiontop.png" />Clue
+                            <img class="abouttop" src="@/assets/image/home/promotion-top.png" />Clue
                         </button>
                         <div>
                             <p>Subscribe</p>
@@ -542,7 +668,7 @@ button {
                     }
                 }
                 .text {
-                    ont-size: 11px;
+                    font-size: 11px;
                     font-weight: 400;
                     color: #9c9aa5;
                     margin-top: 38px;
@@ -554,10 +680,9 @@ button {
                 justify-content: space-between;
                 flex-wrap: wrap;
 
-                div {
+                > div {
                     width: 577px;
                     height: 350px;
-                    padding: 28px 40px;
                     color: #ffffff;
                     box-sizing: border-box;
                     border: 2px solid #7759f3;
@@ -567,6 +692,24 @@ button {
                         rgba(28, 14, 71, 0.8) 100%
                     );
                     border-radius: 20px;
+                    padding: 24px;
+                    .infomer-1 {
+                        display: flex;
+                        align-items: center;
+                        img {
+                            height: 221px;
+                        }
+                        span {
+                            font-size: 11px;
+                            font-weight: 400;
+                            color: #98999a;
+                            padding-left: 16px;
+                        }
+                    }
+                    .earn-ounty {
+                        width: 100%;
+                        border-color: #0000ff;
+                    }
                 }
                 .know-more {
                     width: 100%;
@@ -579,68 +722,230 @@ button {
                 margin-top: 40px;
                 display: flex;
                 align-items: flex-end;
-                justify-content: space-around;
-                .illuimg {
-                    width: 315px;
-                    height: 552px;
+                justify-content: space-between;
+                .illuimg-box {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-right: 24px;
+
+                    .illuimg {
+                        width: 315px;
+                        height: 552px;
+                        margin: 0 auto;
+                    }
+                    .view-all-but {
+                        width: 440px;
+                        margin-top: 42px;
+                        border-color: #0000ff;
+                    }
                 }
-                .view-all-but {
-                    width: 440px;
-                    margin-top: 42px;
-                }
+                // .swiper-slide {
+                //     width: auto !important;
+                // }
                 .blank-block {
-                    width: 319px;
+                    // min-width: 319px;
                     height: 517px;
                     background: #130518;
                     border: 2px solid #0000ff;
                     border-radius: 20px;
+                    padding: 16px;
+                    box-sizing: border-box;
+                    color: #fff;
+                    .head-portrait {
+                        height: 200px;
+                        background-color: #78adbf;
+                        border-radius: 16px;
+                    }
+                    .character-name {
+                        text-align: center;
+                        margin: 16px 0;
+                        p {
+                            font-size: 16px;
+                        }
+                        span {
+                            font-size: 13px;
+                        }
+                    }
+                    .character-content {
+                        .task {
+                            color: #8b6ae7;
+                            margin-bottom: 8px;
+                        }
+                        .character-text {
+                            font-size: 13px;
+                            line-height: 22px;
+                        }
+                        .character-btn {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            font-size: 16px;
+                            padding: 16px 0;
+                            button {
+                                padding: 0 8px;
+                                height: 35px;
+                                background-color: #8b6ae7;
+                                color: #fff;
+                                border-radius: 8px;
+                                font-size: 16px;
+                            }
+                        }
+                        .character-time {
+                            border-top: 1px solid #38373b;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            color: #999999;
+                            font-size: 12px;
+                            padding: 16px 0;
+                        }
+                    }
                 }
             }
             .discount-channel {
                 display: flex;
                 justify-content: space-between;
                 margin-top: 163px;
-                div {
+                .discount-content-a {
+                    > p {
+                        font-size: 38px;
+                        color: #726ad8;
+                        span {
+                            color: #ffffff;
+                        }
+                    }
                     display: flex;
                     flex-direction: column-reverse;
 
-                    .explore-more {
-                        border-radius: 16px;
-                        width: 372px;
-                        border: 2px solid #0000ff;
-                        margin-top: 16px;
-                    }
-                    div {
+                    > div {
                         border: 2px solid #3d107b;
                         border-radius: 20px;
                         &.block-a {
                             width: 390px;
                             height: 527px;
                             margin-top: 56px;
-                        }
-                        &.block-b {
-                            width: 378px;
-                            height: 395px;
-                            margin-top: 16px;
-                            margin-right: 16px;
-                        }
-                        &.block-c {
-                            width: 378px;
-                            height: 272px;
-                            margin-left: 16px;
-                        }
-                        &.block-d {
-                            width: 371px;
-                            height: 540px;
+                            background: linear-gradient(#7546b1, #251046);
+                            padding: 16px;
+                            box-sizing: border-box;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-items: center;
+                            font-size: 20px;
+                            color: #fff;
+                            .head-portrait {
+                                background-color: #fff;
+                                width: 180px;
+                                height: 180px;
+                                border-radius: 100%;
+                                margin-bottom: 16px;
+                            }
+                            .tags {
+                                font-size: 12px;
+                                display: flex;
+                                width: 250px;
+                                flex-wrap: wrap;
+                                span {
+                                    padding: 3px 8px;
+                                    border: 1px solid #000;
+                                    margin-left: 16px;
+                                    border-radius: 5px;
+                                    margin-top: 16px;
+                                    &:nth-child(1) {
+                                        border-color: #31b573;
+                                        margin-left: 0px;
+                                    }
+                                    &:nth-child(2) {
+                                        border-color: #0000ff;
+                                    }
+                                    &:nth-child(3) {
+                                        border-color: #8b6ae7;
+                                    }
+                                    &:nth-child(4) {
+                                        border-color: #00a8ec;
+                                    }
+                                }
+                            }
+                            .discount-channel-text {
+                                width: 250px;
+                                font-size: 14px;
+                                margin-top: 8px;
+                                text-align: center;
+                                line-height: 22px;
+                                margin-bottom: 8px;
+                            }
+                            .discount-channel-clue {
+                                display: flex;
+                                font-size: 14px;
+                                line-height: 28px;
+                                margin-top: 8px;
+                                &:nth-child(1) {
+                                    margin-right: 16px;
+                                }
+                            }
+                            .discount-channel-time {
+                                width: 100%;
+                                border-top: 1px solid #38373b;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                color: #999999;
+                                font-size: 12px;
+                                padding-top: 16px;
+                                margin-top: 8px;
+                            }
                         }
                     }
                 }
-                .discount-content-a {
-                    p {
-                        font-size: 38px;
-                        color: #726ad8;
-                        span {
-                            color: #ffffff;
+
+                .block-box {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-self: flex-end;
+                    justify-content: space-between;
+                    margin-left: 42px;
+                    .block-b {
+                        background-image: url('@/assets/image/home/ellipse-bg.png');
+                        box-sizing: border-box;
+                        border-radius: 20px;
+                        width: 367px;
+                        height: 246px;
+                        margin-bottom: 16px;
+                        padding: 16px 24px;
+                        box-sizing: border-box;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        > span {
+                            color: #21f05b;
+                            &.orange {
+                                color: #f9cc6c;
+                            }
+                        }
+                        .discount-footer {
+                            color: #fff;
+                            display: flex;
+                            justify-content: space-between;
+                            font-size: 13px;
+                            align-items: center;
+                            button {
+                                color: #fff;
+                                border: 1px solid #fff;
+                                min-width: 141px;
+                                height: 31px;
+                                border-radius: 16px;
+                            }
+                        }
+                    }
+                    .explore-more {
+                        width: 100%;
+                        button {
+                            width: 100%;
+                            border-radius: 16px;
+                            border: 2px solid #0000ff;
+                            margin-top: 16px;
+                            box-sizing: border-box;
                         }
                     }
                 }
