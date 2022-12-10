@@ -45,12 +45,15 @@ document.addEventListener('click', (e) => {
     <header class="header-box">
         <div class="header-box-content">
             <div class="logo-img-box" @click="onLogoClick">
-                <img class="logo-img" src="@/assets/image/logo.png" alt="" />
-                <div class="logo">BOUNYCLUE</div>
+                <img class="logo-img" src="@/assets/image/commit/logo.svg" alt="" />
+                <div class="menu-box">
+                    <div class="menu-item">Quests</div>
+                    <div class="menu-item">Quests</div>
+                    <div class="menu-item">Quests</div>
+                    <div class="menu-item">Quests</div>
+                </div>
             </div>
             <div class="login-button-box">
-                <div class="docs">Community</div>
-                <div class="docs">Docs</div>
                 <div class="login-button">Ethereum</div>
                 <div class="login-button" v-if="!assets" @click="onConnectClick">
                     Connect Wallet
@@ -69,37 +72,33 @@ document.addEventListener('click', (e) => {
 
 <style lang="less" scoped>
 .header-box {
-    width: 100%;
     position: relative;
-    height: 100px;
+    height: 80px;
     display: flex;
     justify-content: center;
     top: 0;
     left: 0;
     z-index: 2;
     border-bottom: 1px solid #999;
-    background-color: rgb(42, 42, 47);
+    background-color: rgb(42, 42, 47, 0.6);
     .header-box-content {
-        width: 1700px;
+        width: 80%;
         height: 100%;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         .logo-img-box {
+            width: 49px;
+            height: 49px;
             display: flex;
             align-items: center;
             cursor: pointer;
             .logo-img {
-                width: 49px;
-                height: 49px;
+                width: 45px;
                 margin-right: 15px;
             }
-            .logo {
-                font-size: 30px;
-                font-weight: 400;
-                color: #fff;
-                font-weight: 600;
-                position: relative;
-                top: 3px;
+            .menu-box {
+                display: flex;
             }
         }
         .login-button-box {
@@ -107,34 +106,27 @@ document.addEventListener('click', (e) => {
             position: relative;
             display: flex;
             align-items: center;
-            .docs {
-                font-size: 23px;
-                font-weight: 400;
-                color: #f7f9f7;
-                margin-right: 38px;
-            }
             .login-button {
-                width: 209px;
-                height: 50px;
-                background: #f7f6f6;
-                border: 1px solid #37388e;
-                border-radius: 40px;
-                font-size: 22px;
+                width: 156px;
+                height: 43px;
+                border: 2px solid #818181;
+                background: linear-gradient(
+                    0deg,
+                    rgba(153, 153, 153, 0.2) 0%,
+                    rgba(153, 153, 153, 0.2) 100%
+                );
+                border-radius: 20px;
+                font-size: 14px;
                 font-weight: 600;
                 color: #010101;
-                line-height: 50px;
+                line-height: 43px;
                 text-align: center;
                 cursor: pointer;
-                margin-left: 18px;
+                margin-left: 20px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 position: relative;
-                #loginImg {
-                    width: 40px;
-                    height: 40px;
-                    margin-right: 12px;
-                }
                 .login-show-box {
                     position: absolute;
                     right: 0px;
