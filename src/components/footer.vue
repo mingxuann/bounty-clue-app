@@ -8,17 +8,23 @@ const pushLink = (link) => {
 </script>
 <template>
     <div class="footer">
-        <div class="footer-item">
-            <p class="privacy-pollcy">Privacy Policy &nbsp; Terms & Conditions</p>
+        <div class="footer-left">
+            <img
+                class="logo-img"
+                src="@/assets/image/commit/logo.svg"
+                @click="router.push('/home')" />
             <p class="privacy-pollcyb">BonutyClue © 2022. All right reserved.</p>
         </div>
-        <div class="footer-item">
+        <div class="footer-right">
+            <div class="privacy-pollcy-box">
+                <p class="privacy-pollcy">Privacy Policy</p>
+                <p class="privacy-pollcy">Terms & Conditions</p>
+            </div>
             <div class="iconfont-list">
                 <i class="iconfont icon-medium"></i>
                 <i
                     class="iconfont icon-twitter-fill"
                     @click="pushLink('https://twitter.com/BountyClue')"></i>
-                <i class="iconfont icon-github-fill"></i>
                 <i class="iconfont icon-discord"></i>
             </div>
         </div>
@@ -26,36 +32,24 @@ const pushLink = (link) => {
 </template>
 <style lang="less" scoped>
 .footer {
-    height: 100px;
+    height: 140px;
     background-color: #000;
     box-shadow: 0px 4px 12px 1px rgba(106, 106, 106, 0.31);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 115px;
+    padding: 30px;
     box-sizing: border-box;
-    .footer-item {
-        .privacy-pollcy {
-            font-size: 20px;
-            color: #fff;
+    .footer-left {
+        .logo-img {
+            width: 55px;
+            height: 67px;
         }
         .privacy-pollcyb {
-            font-size: 18px;
-            font-weight: 500;
-            font-style: italic;
-            color: #656468;
-            margin-top: 5px;
-            color: #fff;
-        }
-        .iconfont-list {
-            display: flex;
-            align-items: center;
-            .iconfont {
-                font-size: 40px;
-                margin-left: 16px;
-                color: #fff;
-                cursor: pointer;
-            }
+            font-size: 12px;
+            font-weight: 400;
+            color: #918c8c;
+            margin-top: 10px;
         }
     }
 }

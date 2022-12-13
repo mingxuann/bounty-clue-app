@@ -1,10 +1,11 @@
 /** * @file * @author 何明暄 */
 <script setup>
 import { reactive, onMounted } from 'vue'
-
+import { useRouter } from 'vue-router'
 import { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
+const router = useRouter()
 const modules = [Autoplay]
 
 const state = reactive({})
@@ -12,7 +13,7 @@ onMounted(() => {
     changeState()
     setInterval(() => {
         changeState()
-    }, 5000)
+    }, 4000)
 })
 const random = (min, max) => Math.floor(min + Math.random() * (max - min))
 const remain = (n) => 100 - n
@@ -32,6 +33,9 @@ const create = (blob) => {
     let coordinates = `${r[0]}% ${r[1]}% ${r[2]}% ${r[3]}% / ${r[4]}% ${r[6]}% ${r[7]}% ${r[5]}%`
     blob.style.borderRadius = coordinates
     blob.style.setProperty('--r', `${random(0, 20)}deg`)
+}
+const pushLink = (link) => {
+    window.open(link, '_blank')
 }
 </script>
 <template>
@@ -64,23 +68,29 @@ const create = (blob) => {
                             <span>Promotion</span>
                         </p>
                         <div class="button-box">
-                            <button class="button-border start-on">
+                            <button class="button-border start-on" @click="router.push('/quests')">
                                 <span>Start On</span>
                                 <i class="iconfont icon-fenxiang"></i>
                             </button>
 
-                            <button class="button-border start-on">
-                                <span>Start On</span>
+                            <button
+                                class="button-border start-on"
+                                @click="pushLink('https://docs.bountyclue.com')">
+                                <span>Docs</span>
                                 <i class="iconfont icon-fenxiang"></i>
                             </button>
 
-                            <button class="button-border bounty-quests">
+                            <button
+                                class="button-border bounty-quests"
+                                @click="router.push('/quests')">
                                 <span>Create Bounty Quests</span>
                                 <i class="iconfont icon-fenxiang"></i>
                             </button>
                             <div class="third-party">
                                 <i class="iconfont icon-discord"></i>
-                                <i class="iconfont icon-twitter-fill"></i>
+                                <i
+                                    class="iconfont icon-twitter-fill"
+                                    @click="pushLink('https://twitter.com/BountyClue')"></i>
                                 <i class="iconfont icon-medium"></i>
                             </div>
                         </div>
@@ -118,7 +128,7 @@ const create = (blob) => {
                                 purchase of crypto assets.</span
                             >
                         </div>
-                        <button class="button-border earn-ounty">
+                        <button class="button-border earn-ounty" @click="router.push('/promotion')">
                             <span>Earn Bounty</span>
                             <i class="iconfont icon-fenxiang"></i>
                         </button>
@@ -134,13 +144,15 @@ const create = (blob) => {
                                 long time.</span
                             >
                         </div>
-                        <button class="button-border earn-ounty">
+                        <button class="button-border earn-ounty" @click="router.push('/quests')">
                             <span>Provide Clue</span>
                             <i class="iconfont icon-fenxiang"></i>
                         </button>
                     </div>
 
-                    <button class="button-border know-more">
+                    <button
+                        class="button-border know-more"
+                        @click="pushLink('https://docs.bountyclue.com')">
                         <span>Know More About BountyClue</span>
                         <i class="iconfont icon-fenxiang"></i>
                     </button>
@@ -161,7 +173,7 @@ const create = (blob) => {
                     <div class="illuimg-box">
                         <img class="illuimg" src="@/assets/image/home/illuimg.png" />
 
-                        <button class="button-border view-all-but">
+                        <button class="button-border view-all-but" @click="router.push('/quests')">
                             <span>View All</span>
                             <i class="iconfont icon-fenxiang"></i>
                         </button>
@@ -191,7 +203,9 @@ const create = (blob) => {
                                     <p class="character-btn">
                                         <span>Bounty : 1000 SALM</span>
 
-                                        <button>Implement</button>
+                                        <button @click="router.push('/quests-details')">
+                                            Implement
+                                        </button>
                                     </p>
                                     <p class="character-time">
                                         <span>Ending Time -</span>
@@ -252,40 +266,19 @@ const create = (blob) => {
                         </p>
                     </div>
                     <div class="block-box">
-                        <div class="block-b">
+                        <div
+                            class="block-b"
+                            v-for="item in 4"
+                            @click="router.push('/promotion-details')">
                             <span>Upcoming</span>
                             <div></div>
                             <p class="discount-footer">
                                 <button>Apply</button>
                                 <span>COSTO.LAND</span>
-                            </p>
-                        </div>
-                        <div class="block-b">
-                            <span>Upcoming</span>
-                            <div></div>
-                            <p class="discount-footer">
-                                <button>Apply</button>
-                                <span>SPACE CHAIN</span>
-                            </p>
-                        </div>
-                        <div class="block-b">
-                            <span class="orange">Voting</span>
-                            <div></div>
-                            <p class="discount-footer">
-                                <button>Apply</button>
-                                <span>COSTO.LAND</span>
-                            </p>
-                        </div>
-                        <div class="block-b">
-                            <span class="orange">Voting</span>
-                            <div></div>
-                            <p class="discount-footer">
-                                <button>Apply</button>
-                                <span>SPACE CHAIN</span>
                             </p>
                         </div>
                         <div class="explore-more">
-                            <button class="button-border">
+                            <button class="button-border" @click="router.push('/promotion')">
                                 <span>Explore More</span>
                                 <i class="iconfont icon-fenxiang"></i>
                             </button>
@@ -305,18 +298,18 @@ const create = (blob) => {
                 </div>
                 <div class="governance">
                     <div class="governance-text">
-                        <div>
+                        <div @click="pushLink('https://docs.bountyclue.com')">
                             <p>Fund Management</p>
                             Jointly manage the use of the fund as a shareholder, expand the scope of
                             the reward, and create stronger momentum for the community.
                         </div>
-                        <div>
+                        <div @click="pushLink('https://docs.bountyclue.com')">
                             <p>Proposal Voting</p>
                             BountyClue will not reject any proposal that is conducive to ecological
                             development, and can decide whether the proposal is implemented by
                             voting.
                         </div>
-                        <div>
+                        <div @click="pushLink('https://docs.bountyclue.com')">
                             <p>Community Dao</p>
                             We hope that more community contributors will join in the establishment
                             of Dao and enhance the activity of BountyClue to create greater value.
@@ -350,22 +343,22 @@ const create = (blob) => {
                     <div class="step-b">
                         <p class="steps-title">Step 2</p>
                         <p>Verify your identity as a real human</p>
-                        <button>Verify</button>
+                        <button @click="router.push('/profile')">Verify</button>
                     </div>
                     <div class="step-c">
                         <p class="steps-title">Step 3</p>
                         <p>Complete quests and earn bounties</p>
-                        <button>Participate</button>
+                        <button @click="router.push('/quests')">Participate</button>
                     </div>
                     <div class="step-d">
                         <p class="steps-title">Step 4</p>
                         <p>Check your eligibility for the promotion</p>
-                        <button>Check In</button>
+                        <button @click="router.push('/promotion')">Check In</button>
                     </div>
                     <div class="step-e">
                         <p class="steps-title">Step 5</p>
                         <p>Congratulations claim your bounty</p>
-                        <button>Claim</button>
+                        <button @click="router.push('/claim')">Claim</button>
                     </div>
                     <img class="aero-bee" src="@/assets/image/home/rocket-1.png" />
                 </div>
@@ -376,7 +369,7 @@ const create = (blob) => {
                         </button>
                         <div>
                             <p>Subscribe</p>
-                            <span>Let’s Create Great Things</span>
+                            <span>Let's Create Great Things</span>
                         </div>
                     </div>
                 </div>
@@ -593,6 +586,7 @@ button {
                             i {
                                 font-size: 28px;
                                 margin-right: 24px;
+                                cursor: pointer;
                             }
                         }
                     }
@@ -740,9 +734,6 @@ button {
                         border-color: #0000ff;
                     }
                 }
-                // .swiper-slide {
-                //     width: auto !important;
-                // }
                 .blank-block {
                     // min-width: 319px;
                     height: 517px;
@@ -973,6 +964,7 @@ button {
                         font-weight: 400;
                         color: #999999;
                         line-height: 24px;
+                        cursor: pointer;
                         p {
                             font-size: 16px;
                             font-family: Candara;

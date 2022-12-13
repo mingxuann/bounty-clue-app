@@ -21,9 +21,6 @@ const balanceNumber = computed(() => store.state.balanceNumber)
 const routerPush = (item) => {
     router.push(item.path)
 }
-const onLogoClick = () => {
-    router.push('/home')
-}
 const loginImg = ref(null)
 const loginImgContant = ref(null)
 onMounted(() => {
@@ -72,13 +69,16 @@ document.addEventListener('click', (e) => {
 <template>
     <header class="header-box">
         <div class="header-box-content">
-            <div class="logo-img-box" @click="onLogoClick">
-                <img class="logo-img" src="@/assets/image/commit/logo.svg" alt="" />
+            <div class="logo-img-box">
+                <img
+                    class="logo-img"
+                    src="@/assets/image/commit/logo.svg"
+                    @click="router.push('/home')" />
                 <div class="menu-box">
-                    <div class="menu-item">Quests</div>
-                    <div class="menu-item">Promotions</div>
-                    <div class="menu-item">Governance</div>
-                    <div class="menu-item">Claim</div>
+                    <div class="menu-item" @click="router.push('/quests')">Quests</div>
+                    <div class="menu-item" @click="router.push('/promotion')">Promotions</div>
+                    <div class="menu-item" @click="router.push('/governance')">Governance</div>
+                    <div class="menu-item" @click="router.push('/claim')">Claim</div>
                 </div>
             </div>
             <div class="login-button-box">
@@ -102,6 +102,7 @@ document.addEventListener('click', (e) => {
                             BNB Chine
                             <div class="iconfont icon-check yes" v-if="assetsChina == 56"></div>
                         </div>
+                        <div class="more-come-soon">More to come soon</div>
                     </div>
                 </button>
                 <button class="login-button" v-if="!assets" @click="onConnectClick">
@@ -137,7 +138,6 @@ document.addEventListener('click', (e) => {
                         </div>
                         <div class="login-show-item" @click="onStateLogout">
                             <span>Login Out</span>
-                            <i class="iconfont icon-dengchu-box-r-xian"></i>
                         </div>
                     </div>
                 </button>
@@ -198,7 +198,7 @@ document.addEventListener('click', (e) => {
                 height: 43px;
                 line-height: 43px;
                 background-color: rgba(153, 161, 189, 0);
-                border: 1px solid rgb(246, 221, 232);
+                border: 1px solid #3d107b;
                 border-radius: 28px;
                 font-size: 16px;
                 color: #ffffff;
@@ -228,7 +228,7 @@ document.addEventListener('click', (e) => {
                     box-shadow: 0 4px 12px 0 rgb(0 0 0 / 15%);
                     padding: 10px;
                     box-sizing: border-box;
-                    background-color: #fff;
+                    background-color: #c2b8f8;
                     border-radius: 12px;
                     top: 60px;
                     right: 0;
@@ -238,7 +238,7 @@ document.addEventListener('click', (e) => {
                         box-sizing: border-box;
                         cursor: pointer;
                         border-radius: 12px;
-                        color: rgb(13, 17, 28);
+                        color: #04125c;
                         transition: background-color 250ms ease 0s;
                         display: flex;
                         align-items: center;
@@ -247,13 +247,22 @@ document.addEventListener('click', (e) => {
                             margin-right: 20px;
                         }
                         .yes {
-                            color: rgb(76, 130, 251);
+                            color: #4a5fcc;
                             margin-left: auto;
                             margin-right: 6px;
                         }
                         &:hover {
-                            background-color: rgb(210, 217, 238);
+                            background-color: #b1a4fe;
                         }
+                    }
+                    .more-come-soon {
+                        height: 30px;
+                        line-height: 36px;
+                        font-size: 14px;
+                        font-family: Candara;
+                        font-weight: 400;
+                        color: #98999a;
+                        text-align: center;
                     }
                 }
                 .user-headimg {
@@ -274,8 +283,8 @@ document.addEventListener('click', (e) => {
                     display: flex;
                     flex-direction: column;
                     font-size: 16px;
-                    background-color: rgb(255, 255, 255);
-                    border: 1px solid rgb(210, 217, 238);
+                    background-color: #c2b8f8;
+                    border: 1px solid rgb(145, 171, 248);
                     box-shadow: rgb(51 53 72 / 4%) 8px 12px 20px, rgb(51 53 72 / 2%) 4px 6px 12px,
                         rgb(51 53 72 / 4%) 4px 4px 8px;
                     padding: 16px 10px;
@@ -304,7 +313,7 @@ document.addEventListener('click', (e) => {
                                 .copy-item {
                                     width: 32px;
                                     height: 32px;
-                                    background-color: rgb(232, 236, 251);
+                                    background-color: #c2b8f8;
                                     border-radius: 12px;
                                     display: flex;
                                     align-items: center;
@@ -335,10 +344,10 @@ document.addEventListener('click', (e) => {
                     .login-show-item {
                         padding: 3px 8px;
                         box-sizing: border-box;
-                        font-size: 14px;
+                        font-size: 18px;
                         font-weight: 400;
                         display: flex;
-                        justify-content: space-between;
+                        justify-content: center;
                         align-items: center;
                         border-radius: 12px;
                         transition: 0.3s;
@@ -346,7 +355,7 @@ document.addEventListener('click', (e) => {
                         cursor: pointer;
                         &:hover {
                             color: rgb(13, 17, 28);
-                            background-color: rgb(245, 246, 252);
+                            background-color: rgba(232, 236, 251, 0.7);
                         }
                     }
                 }
